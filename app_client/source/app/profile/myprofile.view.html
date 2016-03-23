@@ -1,10 +1,41 @@
 <div class="row">
-    <div class="col-xs-12">
-        <div class="text-center">
-            <h3>My Profile</h3>
-            <p>
-                This page is only accessible after authentication.
-            </p>
+    <div class="col-md-9">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;
+              display:block; margin:auto;" src="images/instructor_image.jpg">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="only-bottom-margin">{{ vm.profileModel.firstname }} {{ vm.profileModel.lastname}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text-muted">Email:</span>{{vm.profileModel.email}}<br/><br/>
+                            <span class="text-muted">Gender:</span> Male (temp hardcoded)<br/>
+                            <span class="text-muted">Looking for:</span> Female (temp hardcoded)
+                        </div>
+                        <div class="col-md-6">
+                            <div class="activity-mini">
+                                <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                            </div>
+                            <div class="activity-mini">
+                                <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
