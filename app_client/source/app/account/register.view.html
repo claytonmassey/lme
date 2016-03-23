@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="text-center">
+            <h3>Register</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5 col-sm-offset-1">
+        <div class="alert alert-danger" ng-show="vm.registrationError && vm.registrationError.length > 0">{{vm.registrationError}}</div>
+
+        <form name="registerForm" class="form" ng-submit="registerForm.$valid && vm.register()" novalidate>
+            <div class="form-group" ng-class="{'has-error' : (registerForm.username.$dirty || registerForm.$submitted) && registerForm.username.$invalid}" >
+                 <label class="control-label">Email</label>
+                <input
+                        type="email"
+                        class="form-control"
+                        name="username"
+                        ng-model="vm.username"
+                        required>
+                <span class="control-label" ng-show="(registerForm.username.$dirty || registerForm.$submitted) && registerForm.username.$invalid">Enter a valid email</span>
+
+            </div>
+            <div class="form-group" ng-class="{'has-error' : (registerForm.password.$dirty || registerForm.$submitted) && registerForm.password.$invalid}" >
+                <label class="control-label">Password</label>
+                <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        ng-model="vm.password"
+                        ng-minlength="6"
+                        required>
+                <span class="control-label" ng-show="(registerForm.password.$dirty || registerForm.$submitted) && registerForm.password.$error.required">Enter a password</span>
+                <span class="control-label" ng-show="(registerForm.password.$dirty || registerForm.$submitted) && registerForm.password.$error.minlength">Password must be at least 6 characters</span>
+
+            </div>
+            <div class="form-group" ng-class="{'has-error' : (registerForm.confirmpassword.$dirty || registerForm.$submitted) && registerForm.confirmpassword.$invalid}" >
+                <label class="control-label">Confirm Password</label>
+                <input
+                        type="password"
+                        class="form-control"
+                        name="confirmpassword"
+                        ng-model="vm.confirmPassword"
+                        password-confirmation="registerForm.password"
+                        ng-minlength="6"
+                        required>
+                <span class="control-label" ng-show="(registerForm.confirmpassword.$dirty || registerForm.$submitted) && registerForm.confirmpassword.$error.required">Enter a password</span>
+                <span class="control-label" ng-show="(registerForm.confirmpassword.$dirty || registerForm.$submitted) && registerForm.confirmpassword.$error.minlength">Password must be at least 6 characters</span>
+                <span class="control-label" ng-show="(registerForm.confirmpassword.$dirty || registerForm.$submitted) && !registerForm.confirmpassword.$error.required && !registerForm.confirmpassword.$error.minlength && registerForm.confirmpassword.$error.compareTo">Passwords must match</span>
+
+            </div>
+
+            <div class="form-group" ng-class="{'has-error' : (registerForm.gender.$dirty || registerForm.$submitted) && registerForm.gender.$invalid}" >
+                <label class="control-label">I am</label>
+                <select class="form-control"
+                        ng-model="vm.genderSelect"
+                        ng-options="gender as gender.label for gender in vm.genders"
+                        name="gender"
+                        required>
+                </select>
+                <span class="control-label" ng-show="(registerForm.gender.$dirty || registerForm.$submitted) && registerForm.gender.$invalid">Enter your gender</span>
+            </div>
+            <div class="form-group" ng-class="{'has-error' : (registerForm.lookingFor.$dirty || registerForm.$submitted) && registerForm.lookingFor.$invalid}" >
+                <label class="control-label">Looking for a</label>
+                <select class="form-control"
+                        ng-model="vm.lookingForSelect"
+                        ng-options="gender as gender.label for gender in vm.genders"
+                        name="lookingFor"
+                        required>
+                </select>
+                <span class="control-label" ng-show="(registerForm.lookingFor.$dirty || registerForm.$submitted) && registerForm.lookingFor.$invalid">Who are you looking for</span>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4" style="padding-top:15px;">
+        <div class="row">
+            <div style="padding:0px 15px 0px 15px;">
+                <button class="btn btn-primary col-xs-12" type="button" ng-click="vm.authenticate('facebook');" style="margin-bottom:10px;">
+                    Login With Facebook
+                </button>
+
+                <button class="btn btn-primary col-xs-12" type="button" ng-click="vm.authenticate('instagram');" >
+                    Login With Instagram
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

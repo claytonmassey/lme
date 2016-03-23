@@ -1,0 +1,66 @@
+doctype html
+html(ng-app='tviWorkshopsOnline')
+  head
+    title= title
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js')
+
+    // Bower Libraries
+    script(src='/moment/moment.js')
+    script(src='/angular-bootstrap/ui-bootstrap-tpls.js')
+    script(src='/ngCart/dist/ngCart.js')
+    script(src='/ngstorage/ngStorage.js')
+    script(src='/satellizer/satellizer.js')
+
+    //Angular files, controllers
+    script(src='/app.js')
+    script(src='/home/home.controller.js')
+    script(src='/workshops/workshops.controller.js')
+    script(src='/workshops/workshopDetails.controller.js')
+    script(src='/shopping_cart/shoppingCart.controller.js')
+    script(src='/account/account.controller.js')
+    script(src='/account/login.config.js')
+    script(src='/account/login.controller.js')
+    script(src='/account/register.controller.js')
+    script(src='/account/logout.controller.js')
+    script(src='/account/auth.controller.js')
+
+    script(src='/neo4j/neo4j.controller.js')
+
+    //Angular Services
+    script(src='/common/services/workshopData.service.js')
+    script(src='/common/services/authorization.service.js')
+    script(src='/common/services/account.service.js')
+    script(src='/common/factories/tokenInjector.factory.js')
+    script(src = '/common/services/neo4j.service.js')
+
+    //Angular Directive
+    script(src='/common/directives/passwordConfirmation.directive.js')
+
+
+
+  body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          a.navbar-brand(href='/#/') Home
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/#/workshops') Workshops
+          div(style='float:right;margin-top: 5px;')
+            div(ng-controller="logoutCtrl")
+              a(ng-click='logout()' class="btn btn-default") Logout
+          div(style='float:right;margin-top: 5px;')
+            a(href='/#/shoppingcart')
+              ngcart-summary
+    .container
+      div(ng-view)
+        block content

@@ -1,0 +1,1 @@
+require('./myprofile.controller.js');
