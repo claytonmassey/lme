@@ -18,7 +18,7 @@ function config ($routeProvider, $authProvider) {
     $authProvider.facebook({
         clientId: '564016987133623',
         url: '/api/account/facebookcallback',
-        redirectUri: 'http://localhost:3000/api/account/facebookcallback' // window.location.origin + '/'
+        redirectUri: window.location.origin + '/api/account/facebookcallback'
     });
     $authProvider.instagram({
         clientId: 'Instagram Client ID'

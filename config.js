@@ -15,7 +15,7 @@ if(devBuild){
     config.apiUrl = 'http://localhost:3000/api/';
 }
 else {
-    config.apiUrl = 'http://localhost:3000/api/';
+    config.apiUrl = 'http://lavishme.herokuapp.com';
 }
 
 
