@@ -1,6 +1,9 @@
 {
   "name": "lavishme",
   "version": "1.0.0",
+  "engines": {
+    "node": "4.1.0"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
