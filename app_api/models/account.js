@@ -11,6 +11,10 @@ var User = new Schema({
     email: String,
     gender: String,
     lookingFor: String,
+    location: String,
+    oneliner: String,
+    description: String,
+    age: Number,
     roles: []
 });
 

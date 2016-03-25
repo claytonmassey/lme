@@ -1,37 +1,92 @@
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10 col-md-offset-1">
         <div class="">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;
-              display:block; margin:auto;" src="images/instructor_image.jpg">
+                    <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;display:block; margin:auto;" src="images/instructor_image.jpg">
+                    <div class="col-sm-12"  ng-show="vm.editorEnabled" style="margin-top:10px;">
+                        <span class="btn btn-default btn-file">
+                            <strong>Pick New Photo</strong>
+                            <input type="file" style="width:100%;">
+                        </span>
+                    </div>
+
+                    <div class="col-sm-12" style="margin-top:10px;">
+                        <div class="activity-mini col-xs-6">
+                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-comment text-muted"></i> 500</a>
+                        </div>
+                        <div class="activity-mini col-xs-6">
+                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-heart text-muted"></i> 1500</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="only-bottom-margin">{{ vm.profileModel.firstname }} {{ vm.profileModel.lastname}}</h1>
+                        <div class="col-md-10">
+                            <h1 ng-show="!vm.editorEnabled" class="only-bottom-margin">{{ vm.profileModel.firstname }} {{ vm.profileModel.lastname}} {{ vm.profileModel.age}}</h1>
+                            <div ng-show="vm.editorEnabled" style="margin-top:20px;">
+                                <span>Name:</span>
+                                <input ng-model="vm.editableFirstName" class="form-control">
+                                <input ng-model="vm.editableLastName" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <span class="text-muted">Email:</span>{{vm.profileModel.email}}<br/><br/>
-                            <span class="text-muted">Gender:</span> Male (temp hardcoded)<br/>
-                            <span class="text-muted">Looking for:</span> Female (temp hardcoded)
+                        <div class="col-md-12" ng-show="!vm.editorEnabled">
+                            <span class="text-muted">Email: </span>{{vm.profileModel.email || 'Not set'}}<br/>
+                            <span class="text-muted">{{vm.profileModel.oneliner}}</span> <br/><br/>
+                            <span class="text-muted">Gender: </span> <span class="text-capitalize">{{ vm.profileModel.gender || 'Not set' }}</span><br/>
+                            <span class="text-muted">Looking for: </span> <span class="text-capitalize">{{ vm.profileModel.lookingFor || 'Not set' }}</span><br/>
+                            <div style="marging-top:10px;">{{vm.profileModel.description}}</div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="activity-mini">
-                                <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                        <div class="col-md-10" ng-show="vm.editorEnabled">
+                            <div class="form-group">
+                                <span class="text-muted">Age: </span><input ng-model="vm.editableAge" class="form-control">
                             </div>
-                            <div class="activity-mini">
-                                <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                            <div class="form-group">
+                                <span class="text-muted">Email: </span><input ng-model="vm.editableEmail" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <span class="text-muted">One liner: </span><input ng-model="vm.editableOneliner" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <span class="text-muted">Gender: </span>
+                                <select class="form-control"
+                                        ng-model="vm.editableGender"
+                                        ng-options="gender as gender.label for gender in vm.genders track by gender.value"
+                                        name="gender"
+                                        required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="text-muted">Looking for: </span>
+                                <select class="form-control"
+                                        ng-model="vm.editableLookingFor"
+                                        ng-options="gender as gender.label for gender in vm.genders track by gender.value"
+                                        name="gender"
+                                        required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="text-muted">Description: </span>
+                                <textarea ng-model="vm.editableDescription"class="form-control" rows="5"></textarea>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                    <hr/>
+                    <div ng-show="!vm.editorEnabled">
+                        <button class="btn btn-default pull-right" ng-click="vm.enableEditor()"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                    </div>
+                    <div ng-show="vm.editorEnabled">
+                        <button class="btn btn-default pull-right" ng-click="vm.saveProfile()"><i class="glyphicon glyphicon-ok"></i> Save</button>;
+                        <button style="margin-right:5px;" class="btn btn-default pull-right" ng-click="vm.cancelEditor()"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+
+                    </div>
                 </div>
             </div>
         </div>

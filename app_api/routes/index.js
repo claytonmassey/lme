@@ -21,6 +21,7 @@ router.post('/account/facebookcallback', ctrlAccount.facebookLoginCallback);
 
 //profile routes
 router.get('/profile', auth, ctrlProfile.myProfile);
+router.post('/profile', auth, ctrlProfile.saveProfile);
 router.get('/profile/:userid', auth, ctrlProfile.profileById);
 
 module.exports = router;

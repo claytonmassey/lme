@@ -10,8 +10,14 @@ function profileData($http) {
         return $http.get(url);
     };
 
+    var saveProfile = function (profileModel) {
+        var url = '/api/profile';
+        return $http.post(url, profileModel);
+    };
+
     return {
-        myProfile : myProfile
+        myProfile : myProfile,
+        saveProfile: saveProfile
     };
 
 }
